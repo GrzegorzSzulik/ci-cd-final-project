@@ -52,10 +52,13 @@ spec:
       workingDir: $(workspaces.source.path)
       script: |
         #!/bin/bash
-        pwd
-        ls -la
-        find . -name "requirements.txt"
-        find /workspace -name "requirements.txt"
+        echo "PWD=$(pwd)"
+        echo "=== source ==="
+        ls -la /workspace/source
+        echo "=== workspace tree ==="
+        find /workspace -maxdepth 4
+        echo "=== requirements ==="
+        find /workspace -name requirements.txt
         set -e
         python -m pip install --upgrade pip wheel
         pip install -r requirements.txt
